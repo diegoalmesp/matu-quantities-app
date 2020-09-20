@@ -2,12 +2,25 @@ import React, { useState } from "react";
 import BallRender from "./ball-render";
 import styled from "styled-components";
 
+const AmountWrapperStyled = styled.div`
+  background: papayawhip;
+  border-radius: 9px;
+  border: 3px dashed hotpink;
+  margin: 0px 2px;
+  padding-bottom: 2px;
+`;
+
+const InputWrapperStyled = styled.div`
+  min-width: 265px;
+`;
+
 const BallRenderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0 auto;
   max-width: 1024px;
+  justify-content: space-evenly;
 `;
 
 const InputGroup = styled.div`
@@ -36,8 +49,8 @@ function Amounts() {
   }
 
   return (
-    <div>
-      <div className="input-container">
+    <AmountWrapperStyled>
+      <InputWrapperStyled>
         <InputGroup>
           <label htmlFor="c">CIENES</label>
           <InputNumber
@@ -76,30 +89,30 @@ function Amounts() {
             name="u"
           />
         </InputGroup>
-      </div>
+      </InputWrapperStyled>
       <BallRenderWrapper>
         <BallRender
-          color="red"
+          color="white"
           size={sizes.c}
           multiplier={100}
-          emoji={0x1f49d}
+          // emoji={0x1f49d}
         />
         <BallRender
-          color="green"
+          color="white"
           size={sizes.d}
           multiplier={10}
-          emoji={0x1f49a}
+          // emoji={0x1f49a}
           zoom={2}
         />
         <BallRender
-          color="blue"
+          color="white"
           size={sizes.u}
           multiplier={1}
-          emoji={0x1f49c}
+          // emoji={0x1f49c}
           zoom={3}
         />
       </BallRenderWrapper>
-    </div>
+    </AmountWrapperStyled>
   );
 }
 

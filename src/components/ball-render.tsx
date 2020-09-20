@@ -1,19 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-interface Props {
-  color: string;
-  size: number;
-  multiplier: number;
-  emoji: number;
-  zoom?: number;
-}
-
-interface Color {
-  color?: string;
-  zoom?: number;
-}
-
 const RenderContainer = styled.div`
   display: flex;
   max-width: 50%;
@@ -29,16 +16,33 @@ const Hearts = styled.span`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  margin-top: 5px;
+  border-radius: 3px;
+  margin: 5px;
   background-color: hotpink;
+  max-width: 100px;
 `;
+
+interface Props {
+  color: string;
+  size: number;
+  multiplier: number;
+  emoji?: number;
+  zoom?: number;
+}
+
+interface Color {
+  color?: string;
+  zoom?: number;
+}
 
 const Ball = styled.span<Color>`
   color: ${(props) => props.color || "red"};
-  width: 25px;
-  height: 25px;
+  /* width: 25px;
+  height: 25px; */
+  width: 10px;
+  height: 10px;
   zoom: ${(props) => props.zoom || 1};
+  padding-bottom: 3px;
 `;
 
 const BallRender: React.FC<Props> = ({
@@ -52,6 +56,8 @@ const BallRender: React.FC<Props> = ({
     .fill([], 0)
     .map(() => new Array(multiplier).fill("*", 0));
 
+  const character = emoji ? String.fromCodePoint(emoji) : "*";
+
   return (
     <RenderContainer>
       {multiArray.length < 1 && <span>0</span>}
@@ -60,7 +66,7 @@ const BallRender: React.FC<Props> = ({
           <Hearts key={"hearts" + index}>
             {hearts.map((heart, index) => (
               <Ball key={index + heart} color={color} zoom={zoom}>
-                {String.fromCodePoint(emoji)}
+                {character}
               </Ball>
             ))}
           </Hearts>
